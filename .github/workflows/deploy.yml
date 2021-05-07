@@ -16,7 +16,7 @@ jobs:
     - name: Install npm dependencies
       run: npm install
     - name: API key
-      run: echo 'export default {apiKey: "'$API_KEY'"}' > src/appConfig.js
+      run: echo 'export default {apiKey: \"'$API_KEY'\"}' > src/appConfig.js
       shell: bash
       env:
         API_KEY : ${{secrets.API_KEY}}
