@@ -4,7 +4,7 @@
       type="search" och type="text" gör ingen skillnad men det är tydligare
       att detta inputfält är ett sökfält. Se också:
       https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/search
-    -->      
+    -->
     <input
       data-cy="city"
       class="input"
@@ -29,15 +29,15 @@ export default {
   },
   methods: {
     onSearchClick() {
-      const url = `http://api.openweathermap.org/data/2.5/weather?q=Köttbulle&appid=${config.apiKey}`;
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=${this.search}&appid=${config.apiKey}`;
       /*
-       * Eftersom det tar tid att hämta data från externa resurser så måste vi 
+       * Eftersom det tar tid att hämta data från externa resurser så måste vi
        * köra fetch asynkront, dvs i bakgrunden utan att blockera webbläsaren.
-       * 
+       *
        * Ifall vi hade kört detta synkront hade det inte gått att göra något
        * innan vi får tillbaka ett svar. Prova att köra denna koden för att se
        * skillnaden:
-       
+
       let request = new XMLHttpRequest();
       request.open('GET', url, false); // `false` makes the request synchronous
       request.send(null);
@@ -52,7 +52,7 @@ export default {
         } else {
           // Annars konverterar vi svaret till ett JS objekt
           return response.json();
-        }        
+        }
       }).then((cityInfo) => {
         console.log(cityInfo);
         this.$bus.emit('searchCity', `${cityInfo.name}, ${cityInfo.sys.country}`);
